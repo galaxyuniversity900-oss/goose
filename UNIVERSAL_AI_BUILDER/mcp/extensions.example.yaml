@@ -1,0 +1,25 @@
+# Merge selected entries into ~/.config/goose/config.yaml.
+# Keep disabled until the command, permissions, and tool list are verified.
+extensions:
+  github:
+    name: GitHub MCP
+    cmd: github-mcp-server
+    args: []
+    enabled: false
+    env_keys:
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+    envs: {}
+    type: stdio
+    timeout: 300
+  workspace-files:
+    name: Workspace Filesystem
+    cmd: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-filesystem"
+      - "/ABSOLUTE/PATH/TO/ONE/WORKSPACE"
+    enabled: false
+    env_keys: []
+    envs: {}
+    type: stdio
+    timeout: 300

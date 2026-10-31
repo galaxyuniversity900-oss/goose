@@ -10,7 +10,7 @@ if ! command -v goose >/dev/null 2>&1; then
   echo "Goose CLI not found. Install from https://goose-docs.ai/docs/getting-started/installation"
   exit 2
 fi
-mkdir -p "$DEST/recipes" "$DEST/docs" "$BIN_DIR"
+mkdir -p "$DEST/recipes" "$DEST/docs" "$DEST/config" "$DEST/mcp" "$BIN_DIR"
 copy_file() {
   local src="$1" dst="$2"
   if [[ -e "$dst" && "$FORCE" -ne 1 ]]; then
@@ -27,6 +27,8 @@ done
 for f in "$ROOT"/docs/*.md; do
   [[ -f "$f" ]] && copy_file "$f" "$DEST/docs/$(basename "$f")"
 done
+copy_file "$ROOT/config/config.example.yaml" "$DEST/config/config.example.yaml"
+copy_file "$ROOT/mcp/extensions.example.yaml" "$DEST/mcp/extensions.example.yaml"
 copy_file "$ROOT/scripts/uaib" "$BIN_DIR/uaib"
 chmod 0755 "$BIN_DIR/uaib"
 ENV_FILE="$DEST/env.sh"

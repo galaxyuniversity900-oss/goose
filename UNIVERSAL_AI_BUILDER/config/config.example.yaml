@@ -1,0 +1,38 @@
+# Template only: review and adapt to the installed Goose version.
+# Configure credentials with `goose configure` / Goose secret storage.
+# NEVER put OPENAI_API_KEY or GitHub tokens in this file.
+
+active_provider: openai
+providers:
+  openai:
+    enabled: true
+    model: REPLACE_WITH_A_MODEL_AVAILABLE_TO_YOUR_OPENAI_PROJECT
+    configured: false
+
+GOOSE_MODE: approve
+GOOSE_TEMPERATURE: 0.2
+GOOSE_MAX_TURNS: 100
+GOOSE_CLI_SHOW_COST: true
+GOOSE_TELEMETRY_ENABLED: false
+SECURITY_PROMPT_ENABLED: true
+
+extensions:
+  developer:
+    bundled: true
+    enabled: true
+    name: developer
+    timeout: 300
+    type: builtin
+
+# Add GitHub MCP only after installing and verifying the server binary.
+# Keep write-capable tools disabled until explicitly needed.
+# extensions:
+#   github:
+#     type: stdio
+#     name: github
+#     enabled: false
+#     cmd: github-mcp-server
+#     args: []
+#     env_keys:
+#       - GITHUB_PERSONAL_ACCESS_TOKEN
+#     timeout: 120

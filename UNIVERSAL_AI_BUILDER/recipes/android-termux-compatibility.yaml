@@ -1,0 +1,19 @@
+version: "1.0.0"
+title: "Universal AI Builder — Android Termux Compatibility"
+description: "Assess and adapt a project for Android ARM64 and Termux without assuming native support."
+instructions: |
+  Inspect the actual device and project dependencies before proposing changes.
+  Record Android version, ABI, Termux version, shell, Python/Node/Rust versions,
+  storage permissions, RAM, swap, disk space, and compilers when accessible.
+  Classify each dependency as native verified, available through Termux,
+  source-compilation required, proot/remote-host required, unsupported, or unknown.
+  Avoid blanket pkg upgrade commands and do not reinstall working tools.
+  Estimate download and disk sizes before acquiring runtimes or models.
+  Prefer resumable downloads and verify official checksums where available.
+  Preserve the current working environment and test on actual ARM64 hardware.
+  Never mark Android compatibility verified without an on-device test.
+prompt: |
+  Audit and, where feasible, adapt the current project for Android ARM64
+  Termux. Preserve working components and report verified results.
+settings:
+  temperature: 0.2

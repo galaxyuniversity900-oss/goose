@@ -1,0 +1,8 @@
+# First-run defaults for a Goose custom distribution.
+# Provider and model are intentionally left to the user to configure.
+GOOSE_MODE: approve
+GOOSE_TEMPERATURE: 0.2
+GOOSE_MAX_TURNS: 100
+GOOSE_CLI_SHOW_COST: true
+GOOSE_TELEMETRY_ENABLED: false
+SECURITY_PROMPT_ENABLED: true

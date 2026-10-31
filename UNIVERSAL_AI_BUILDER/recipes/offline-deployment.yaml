@@ -1,0 +1,22 @@
+version: "1.0.0"
+title: "Universal AI Builder — Offline-First Deployment"
+description: "Prepare dependencies and assets online once, then verify offline runtime."
+instructions: |
+  Design connected preparation and disconnected operation as separate stages.
+  Inventory executables, packages, Python/Node dependencies, model weights,
+  browser assets, fonts, and runtime resources. Record version, source, license,
+  size, checksum where available, and whether required at runtime.
+  Create a download manifest and resumable acquisition script. Do not redownload
+  files that pass integrity checks. Pin dependencies and prepare local caches
+  where practical.
+  Ensure offline mode avoids telemetry, update checks, CDNs, remote fonts, and
+  external API calls. Identify features that inherently require a network,
+  such as fetching a new remote video or calling a cloud model.
+  Test with network disabled: startup, core workflows, persistence, backup/
+  restore, and clear errors for network-only features. Never claim offline
+  support without an offline test.
+prompt: |
+  Prepare and verify an offline-first installation and runtime for this project.
+  Minimize repeated downloads and report exact network requirements.
+settings:
+  temperature: 0.2

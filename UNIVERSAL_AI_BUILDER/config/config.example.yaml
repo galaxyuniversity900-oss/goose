@@ -1,0 +1,44 @@
+# Copy into Goose config only after review. Configure providers with: goose configure
+# Never store API keys or GitHub tokens in this file.
+GOOSE_MODE: approve
+GOOSE_TEMPERATURE: 0.2
+GOOSE_MAX_TURNS: 100
+GOOSE_CLI_SHOW_COST: true
+GOOSE_TELEMETRY_ENABLED: false
+SECURITY_PROMPT_ENABLED: true
+extensions:
+  developer:
+    type: builtin
+    name: developer
+    enabled: true
+    bundled: true
+    timeout: 300
+  memory:
+    type: builtin
+    name: memory
+    enabled: true
+    bundled: true
+    timeout: 300
+# Optional GitHub MCP: install and verify github-mcp-server first.
+# Store GITHUB_PERSONAL_ACCESS_TOKEN using Goose secret storage.
+# extensions:
+#   github:
+#     name: GitHub MCP
+#     cmd: github-mcp-server
+#     args: []
+#     enabled: false
+#     env_keys: [GITHUB_PERSONAL_ACCESS_TOKEN]
+#     envs: {}
+#     type: stdio
+#     timeout: 300
+# Optional filesystem MCP: expose one dedicated workspace only.
+# extensions:
+#   workspace-files:
+#     name: Workspace Files
+#     cmd: npx
+#     args: [-y, "@modelcontextprotocol/server-filesystem", "/ABSOLUTE/PATH/TO/WORKSPACE"]
+#     enabled: false
+#     env_keys: []
+#     envs: {}
+#     type: stdio
+#     timeout: 300

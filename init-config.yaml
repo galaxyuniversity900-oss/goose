@@ -1,0 +1,10 @@
+# Universal AI Builder defaults for the Goose custom distribution.
+# Goose reads this file on first run from the executable/workspace root.
+# Provider/model selection is intentionally not preconfigured: users select
+# an available provider with goose configure and keep credentials in secret storage.
+GOOSE_MODE: approve
+GOOSE_TEMPERATURE: 0.2
+GOOSE_MAX_TURNS: 100
+GOOSE_CLI_SHOW_COST: true
+GOOSE_TELEMETRY_ENABLED: false
+SECURITY_PROMPT_ENABLED: true

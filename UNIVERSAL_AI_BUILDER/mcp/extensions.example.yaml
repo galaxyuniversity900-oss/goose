@@ -1,0 +1,54 @@
+# Merge selected entries into ~/.config/goose/config.yaml.
+# Keep disabled until the command, credentials, permissions, and tool list
+# have been reviewed. Secrets belong in Goose secret storage, never this file.
+extensions:
+  github:
+    name: GitHub MCP
+    cmd: github-mcp-server
+    args: []
+    enabled: false
+    env_keys:
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+    envs: {}
+    type: stdio
+    timeout: 300
+
+  brave-search:
+    name: Brave Search MCP
+    cmd: npx
+    args:
+      - -y
+      - "@brave/brave-search-mcp-server"
+      - --transport
+      - stdio
+    enabled: false
+    env_keys:
+      - BRAVE_API_KEY
+    envs: {}
+    type: stdio
+    timeout: 300
+
+  playwright:
+    name: Playwright Browser MCP
+    cmd: npx
+    args:
+      - -y
+      - "@playwright/mcp@latest"
+    enabled: false
+    env_keys: []
+    envs: {}
+    type: stdio
+    timeout: 300
+
+  workspace-files:
+    name: Workspace Filesystem
+    cmd: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-filesystem"
+      - "/ABSOLUTE/PATH/TO/ONE/WORKSPACE"
+    enabled: false
+    env_keys: []
+    envs: {}
+    type: stdio
+    timeout: 300

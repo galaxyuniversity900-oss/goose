@@ -1,0 +1,42 @@
+name: Universal AI Builder validation
+on:
+  push:
+    branches: [feature/universal-ai-builder, main]
+    paths:
+      - "UNIVERSAL_AI_BUILDER/**"
+      - ".github/workflows/universal-ai-builder.yml"
+  pull_request:
+    paths:
+      - "UNIVERSAL_AI_BUILDER/**"
+      - ".github/workflows/universal-ai-builder.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install YAML parser
+        run: python -m pip install --disable-pip-version-check PyYAML==6.0.2
+      - name: Validate recipes and configuration
+        run: python UNIVERSAL_AI_BUILDER/scripts/validate.py
+      - name: Check shell script syntax
+        run: |
+          bash -n UNIVERSAL_AI_BUILDER/scripts/bootstrap.sh
+          bash -n UNIVERSAL_AI_BUILDER/scripts/doctor.sh
+          bash -n UNIVERSAL_AI_BUILDER/scripts/uaib
+      - name: Build portable configuration pack
+        run: python UNIVERSAL_AI_BUILDER/scripts/package.py
+      - name: Upload configuration pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: universal-ai-builder-config-pack
+          path: UNIVERSAL_AI_BUILDER/dist/universal-ai-builder-config-pack.zip
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+CONFIG_ROOT="${XDG_CONFIG_HOME:-$HOME/.config}/goose/universal-ai-builder"
+ENV_FILE="$CONFIG_ROOT/env.sh"
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Universal AI Builder is not bootstrapped. Run scripts/bootstrap.sh first." >&2
+  exit 2
+fi
+# shellcheck disable=SC1090
+source "$ENV_FILE"
+exec goose "$@"

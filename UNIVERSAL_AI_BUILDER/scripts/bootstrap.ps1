@@ -6,7 +6,9 @@ if (-not (Get-Command goose -ErrorAction SilentlyContinue)) {
 $Dest = Join-Path $env:APPDATA "Block\goose\universal-ai-builder"
 $RecipeDest = Join-Path $Dest "recipes"
 $DocsDest = Join-Path $Dest "docs"
-New-Item -ItemType Directory -Force -Path $RecipeDest,$DocsDest | Out-Null
+$ConfigDest = Join-Path $Dest "config"
+$McpDest = Join-Path $Dest "mcp"
+New-Item -ItemType Directory -Force -Path $RecipeDest,$DocsDest,$ConfigDest,$McpDest | Out-Null
 $Force = $args -contains "--force"
 function Copy-Safe([string]$Source,[string]$Target) {
   if ((Test-Path $Target) -and -not $Force) {
@@ -26,6 +28,8 @@ Get-ChildItem (Join-Path $Root "recipes") -Filter *.yaml | ForEach-Object {
 Get-ChildItem (Join-Path $Root "docs") -Filter *.md | ForEach-Object {
   Copy-Safe $_.FullName (Join-Path $DocsDest $_.Name)
 }
+Copy-Safe (Join-Path $Root "config/config.example.yaml") (Join-Path $ConfigDest "config.example.yaml")
+Copy-Safe (Join-Path $Root "mcp/extensions.example.yaml") (Join-Path $McpDest "extensions.example.yaml")
 $EnvFile = Join-Path $Dest "env.ps1"
 $EnvLines = @(
   '$env:GOOSE_RECIPE_PATH = "' + $RecipeDest + '"',

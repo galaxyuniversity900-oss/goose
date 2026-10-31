@@ -13,7 +13,7 @@ on:
 permissions:
   contents: read
 jobs:
-  validate:
+  validate-and-package:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,3 +30,13 @@ jobs:
         run: |
           bash -n UNIVERSAL_AI_BUILDER/scripts/bootstrap.sh
           bash -n UNIVERSAL_AI_BUILDER/scripts/doctor.sh
+          bash -n UNIVERSAL_AI_BUILDER/scripts/uaib
+      - name: Build portable configuration pack
+        run: python UNIVERSAL_AI_BUILDER/scripts/package.py
+      - name: Upload configuration pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: universal-ai-builder-config-pack
+          path: UNIVERSAL_AI_BUILDER/dist/universal-ai-builder-config-pack.zip
+          if-no-files-found: error
+          retention-days: 30

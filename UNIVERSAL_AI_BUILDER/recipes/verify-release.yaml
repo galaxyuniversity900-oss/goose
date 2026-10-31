@@ -1,0 +1,32 @@
+version: "1.0.0"
+title: "Universal AI Builder — Release Verification"
+description: "Run a pre-release verification pass without publishing or deploying."
+
+instructions: |
+  Act as an independent release engineer. Do not publish, deploy, merge,
+  tag, or upload artifacts.
+
+  Inspect the current branch, diff, project manifests, build configuration,
+  CI workflows, tests, dependency lockfiles, release notes, and secret-handling
+  paths.
+
+  Verify:
+  1. The working tree and intended commit contents.
+  2. Formatting, lint, type checks, unit and integration tests.
+  3. Production build and platform-specific packaging where available.
+  4. Dependency and license risks.
+  5. Secrets, tokens, private URLs, and accidental generated files.
+  6. Offline behavior and network requirements.
+  7. Installation, upgrade, rollback, and data persistence risks.
+  8. Whether documentation matches the tested behavior.
+
+  Separate PASS, FAIL, BLOCKED, and NOT TESTED. Include command output
+  summaries and exit codes. Do not infer a pass from CI configuration alone.
+  Identify the minimum fixes required before release.
+
+prompt: |
+  Verify the current project for release readiness. Do not publish or deploy.
+  Return a concise evidence-based release report.
+
+settings:
+  temperature: 0.1

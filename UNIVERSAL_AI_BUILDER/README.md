@@ -112,6 +112,25 @@ Merge only the entries needed into Goose's config. Replace the workspace path wi
 Extension guide:
 https://goose-docs.ai/docs/getting-started/using-extensions
 
+## Package and launcher
+
+Build a portable ZIP containing the recipes, documentation, configuration templates, and scripts:
+
+```bash
+python3 UNIVERSAL_AI_BUILDER/scripts/package.py
+```
+
+The ZIP is written to `UNIVERSAL_AI_BUILDER/dist/universal-ai-builder-config-pack.zip`. It contains a SHA-256 manifest and is integrity-checked after creation. GitHub Actions also builds and uploads this pack as the `universal-ai-builder-config-pack` artifact for 30 days.
+
+After bootstrap, use the `uaib` launcher:
+
+```bash
+uaib session
+uaib --help
+```
+
+The launcher loads the distribution's safe environment defaults and forwards arguments to the installed Goose CLI.
+
 ## Recipes
 
 Set the recipe directory if needed:

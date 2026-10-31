@@ -106,6 +106,7 @@ Review:
 - mcp/extensions.example.yaml
 - config/config.example.yaml
 - docs/SECURITY.md
+- docs/INTEGRATIONS.md
 
 Merge only the entries needed into Goose's config. Replace the workspace path with one dedicated project directory. Install each selected MCP server separately. Keep extensions disabled until their command and tool list are verified. Store tokens using Goose secret storage and grant minimum permissions.
 

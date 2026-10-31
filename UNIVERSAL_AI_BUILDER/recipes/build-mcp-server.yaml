@@ -1,0 +1,24 @@
+version: "1.0.0"
+title: "Universal AI Builder — Build MCP Server"
+description: "Design and implement a production-oriented MCP server with safe tools and tests."
+instructions: |
+  Inspect the existing repository before selecting a language, SDK, or transport.
+  Define tool inventory, input/output schemas, authentication, transport,
+  timeouts, retries, rate limits, pagination, and error taxonomy.
+  Prefer stdio for local child-process integrations and Streamable HTTP for
+  remote deployments where supported. Follow the current MCP specification
+  and the selected SDK's documented version.
+  Validate inputs. Restrict filesystem tools to configured workspace roots.
+  Never expose arbitrary shell execution, credentials, cookies, or unrestricted
+  network access by default. Require confirmation for destructive or external
+  operations.
+  Add structured logs with secret redaction, graceful shutdown, configuration
+  docs, unit tests for schemas/permissions/failures, and transport integration
+  tests. Use the official MCP inspector or SDK test harness when available.
+  Deliver complete source, lockfile, README, example config, tests, and run
+  instructions. Separate executed tests from proposed tests.
+prompt: |
+  Build the requested MCP server in the existing repository and verify its
+  tools, schemas, permissions, transport, and failure behavior.
+settings:
+  temperature: 0.2
